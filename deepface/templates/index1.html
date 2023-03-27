@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Capture de photo</title>
+  </head>
+  <body>
+    <video id="video" width="640" height="480" autoplay></video>
+    <button id="capture-button">Prendre une photo</button>
+    <canvas id="canvas" width="640" height="480"></canvas>
+    <form id="photo-form" action="/detect" method="post" enctype="multipart/form-data">
+      <input type="hidden" id="image" name="image">
+      <input type="submit" value="Envoyer la photo">
+    </form>
+    <script>
+      const video = document.getElementById('video');
+      const canvas = document.getElementById('canvas');
+      const captureButton = document.getElementById('capture-button');
+      const photoForm = document.getElementById('photo-form');
+      const photoDataInput = document.getElementById('image');
+      const constraints = {video: true};
+      
+      // Accéder à la webcam
+      navigator.mediaDevices.getUserMedia(constraints)
+        .then((stream) => {
+          video.srcObject = stream;
+        })
+        .catch((error) => {
+          console.error('Erreur d\'accès à la webcam :', error);
+        });
+        
+      // Prendre une photo
+      captureButton.addEventListener('click', () => {
+        const context = canvas.getContext('2d');
+        context.drawImage(video, 0, 0, canvas.width, canvas.height);
+        const photoData = canvas.toDataURL('image/png');
+        
+      });
+    </script>
+  </body>
+</html>

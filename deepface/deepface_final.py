@@ -10,9 +10,8 @@ face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_fronta
 
 # Chargement du dataset de photos
 dataset = {
-    "Aziz": "E:\Toure\exo python\photo\AZIZ.jpg",
-    "Voisin": "E:\Toure\exo python\photo\presi.jpg",
-    "Presi": "E:\Toure\exo python\photo\photo.jpg"
+    "Aziz": "\image\aziz.jpg",
+    "Silue": "\image\silue.jpeg",
 }
 
 # Route pour afficher la page d'accueil
@@ -116,4 +115,4 @@ def detect():
     return Response(gen(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=8080)

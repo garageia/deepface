@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Détection de visages</title>
+	<style>
+		table {
+			border-collapse: collapse;
+			width: 100%;
+		}
+		th, td {
+			text-align: left;
+			padding: 8px;
+			border-bottom: 1px solid #ddd;
+		}
+		th {
+			background-color: #f2f2f2;
+		}
+	</style>
+</head>
+<body>
+	<h1>Résultats de la détection de visages</h1>
+	<table>
+		<thead>
+			<tr>
+			
+					<th>Visage</th>
+					<th>Genre</th>
+					<th>Emotion</th>
+					<th>Race</th>
+					<th>Âge</th>
+					<th>Nom</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for face in data %}
+				<tr>
+					<td><img src="data:image/jpeg;base64,{{ face.image }}" /></td>
+					<td>{{ face.gender }}</td>
+					<td>{{ face.emotion }}</td>
+					<td>{{ face.race }}</td>
+					<td>{{ face.age }}</td>
+					<td>{{ face.name }}</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</body>
+	</html>
+	
